@@ -1,0 +1,35 @@
+html{
+  background-color: #f1f1f1;
+}
+body {
+  /*font: 10px sans-serif;*/
+  background-color: #f8f8f8;
+  font-family: 'Bitter', serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+  margin-top: 5px;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+
+}
+.borough{
+
+}
+.title{
+  font-family: 'Anton', sans-serif;
+  margin-left: 65px;
+  font-size: 300%;
+}
