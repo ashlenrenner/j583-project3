@@ -1,6 +1,27 @@
+//hides the back button
+function hideBack()
+{
+document.getElementById('back').style.display = "none";
+}
+ hideBack();
+
+ //shows the back button
+ function showBack()
+ {
+ document.getElementById('back').style.display = "block";
+ }
+
+ //hides the update button
+ function hideUpdateBtn()
+ {
+   document.getElementById('update').style.display = "none";
+ }
+
+
+//displays the first chart
 function callChart(){
 
-var margin = {top: 20, right: 100, bottom: 30, left: 300},
+var margin = {top: 20, right: 100, bottom: 30, left: 100},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -13,7 +34,6 @@ var y = d3.scale.linear()
     .range([height, 0]);
 
 var color = d3.scale.category20();
-
 
 // Defines the axes
 var xAxis = d3.svg.axis().scale(x)
@@ -95,8 +115,12 @@ d3.tsv("data.tsv", function(error, data) {
       .attr("dy", ".35em")
       .text(function(d) { return d.name; });
 });
+hideBack();
+
 }
   callChart();
+
+
 
 // ** Update data section (Called from the onclick)
 function updateData() {
@@ -153,7 +177,7 @@ function updateData() {
     //         .call(yAxis);
 
 //This code works, but doesn't replace the current chart
-var margin = {top: 20, right: 100, bottom: 30, left: 300},
+var margin = {top: 20, right: 100, bottom: 30, left: 100},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
             // Parse the date / time
@@ -215,7 +239,16 @@ var margin = {top: 20, right: 100, bottom: 30, left: 300},
 
             });
     // });
+    showBack();
+    hideUpdateBtn();
 }
+
+//displays update button
+function showUpdateBtn()
+{
+  document.getElementById('update').style.display = "";
+}
+showUpdateBtn();
 
 //function for back button
 
@@ -234,4 +267,5 @@ function goBack(){
       .remove();
 
   callChart();
+  showUpdateBtn();
 }
