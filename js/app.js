@@ -35,7 +35,7 @@ var y = d3.scale.linear()
 
 var color = d3.scale.category20();
 // color array
-var bluescale4 = ["#FFAF2B", "#FF9F00", "#040301", "#A88346", "#EA680C", "#D58852"];
+var bluescale4 = ["#FFAF2B", "#FF4C00", "#040301", "#6B4844", "#FF351B", "#AA1400"];
 
 //color function pulls from array of colors stored in color.js
 var color = d3.scale.ordinal().range(bluescale4);
@@ -113,7 +113,7 @@ d3.tsv("data.tsv", function(error, data) {
       .on('mouseover', function(d) {
                 d3.select('.tooltip')
                     .html(d.year + "<br />" + Math.round(d.population) )
-                    .style('opacity', 1);
+                    .style('opacity', .9);
                   })
       .on('mouseout', function(d) {
               d3.select('.tooltip')
@@ -199,10 +199,10 @@ var svg = d3.select("body")
               "translate(" + margin.left + "," + margin.top + ")");
 
 
-// var color = d3.scale.category20();
-//           // color array
-//           var bluescale4 = ["#FFAF2B"];
-//           var color = d3.scale.ordinal().range(bluescale4);
+var color = d3.scale.category20();
+          // color array
+          var bluescale4 = ["#6B4844"];
+          var color = d3.scale.ordinal().range(bluescale4);
 
             // Get the data
             d3.csv("budget.csv", function(error, data) {
