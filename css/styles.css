@@ -33,7 +33,7 @@ svg{
 }
 .title{
   font-family: 'Anton', sans-serif;
-
+  margin-bottom: 15px;
   font-size: 300%;
 }
 .tooltip {
@@ -48,5 +48,5 @@ svg{
   position: absolute;
   bottom: 0;
   margin-left: 100px;
-  
+
 }

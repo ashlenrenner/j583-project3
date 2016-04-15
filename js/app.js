@@ -75,7 +75,7 @@ d3.tsv("data.tsv", function(error, data) {
       name: name,
       values: data.map(function(d) {
         return {year: d.year, population: +d[name]};
-        
+
       })
     };
   });
@@ -101,7 +101,7 @@ d3.tsv("data.tsv", function(error, data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Population");
+      .text("Homeless Population");
 
 //defining boroughs
 
@@ -164,44 +164,7 @@ function updateData() {
         .remove();
 
 
-
-    // d3.csv("budget.csv", function(error, data) {
-    //    	data.forEach(function(d) {
-	  //   	d.year = parseYear(d.year);
-	  //   	d.budget = +d.budget;
-	  //   });
-    //
-    // 	// Scale the range of the data again
-    // 	x.domain(d3.extent(data, function(d) { return d.year; }));
-	  //   y.domain([0, d3.max(data, function(d) { return d.budget; })]);
-    //
-    // Select the section we want to apply our changes to
-    var svg = d3.select("body").transition();
-    //
-    // // Define the line
-    // var valueline = d3.svg.line()
-    //     .x(function(d) { return x(d.year); })
-    //     .y(function(d) { return y(d.budget); });
-    //
-    // // Add the valueline path.
-    //         svg.append("path")
-    //             .attr("class", "line")
-    //             .attr("d", valueline(data));
-    //
-    // // Make the changes
-    //     svg.select(".line")   // change the line
-    //         .duration(750)
-    //         .attr("d", line(data));
-    //
-    //     svg.select(".x.axis") // change the x axis
-    //         .duration(750)
-    //         .call(xAxis);
-    //
-    //     svg.select(".y.axis") // change the y axis
-    //         .duration(750)
-    //         .call(yAxis);
-
-//This code works, but doesn't replace the current chart
+//Second chart
 var margin = {top: 20, right: 100, bottom: 30, left: 100},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
@@ -217,7 +180,8 @@ var margin = {top: 20, right: 100, bottom: 30, left: 100},
                 .orient("bottom").ticks(5);
 
             var yAxis = d3.svg.axis().scale(y)
-                .orient("left").ticks(5);
+                .orient("left").ticks(5)
+                .tickFormat( function(d) { return "$" + d } );
 
             // Define the line
             var valueline = d3.svg.line()
@@ -233,6 +197,11 @@ var margin = {top: 20, right: 100, bottom: 30, left: 100},
                 .append("g")
                     .attr("transform",
                           "translate(" + margin.left + "," + margin.top + ")");
+
+var color = d3.scale.category20();
+          // color array
+          var bluescale4 = ["#FFAF2B"];
+          var color = d3.scale.ordinal().range(bluescale4);
 
             // Get the data
             d3.csv("budget.csv", function(error, data) {
@@ -259,7 +228,13 @@ var margin = {top: 20, right: 100, bottom: 30, left: 100},
                 // Add the Y Axis
                 svg.append("g")
                     .attr("class", "y axis")
-                    .call(yAxis);
+                    .call(yAxis)
+                    .append("text")
+                      .attr("transform", "rotate(-90)")
+                      .attr("y", 6)
+                      .attr("dy", ".71em")
+                      .style("text-anchor", "end")
+                      .text("Spending");
 
 
             });
