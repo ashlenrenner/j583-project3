@@ -35,7 +35,7 @@ var y = d3.scale.linear()
 
 var color = d3.scale.category20();
 // color array
-var bluescale4 = ["#8BA9D0", "#6A90C1", "#066CA9", "#004B8C"];
+var bluescale4 = ["#FFAF2B", "#FF9F00", "#040301", "#A88346", "#EA680C", "#D58852"];
 
 //color function pulls from array of colors stored in color.js
 var color = d3.scale.ordinal().range(bluescale4);
@@ -75,6 +75,7 @@ d3.tsv("data.tsv", function(error, data) {
       name: name,
       values: data.map(function(d) {
         return {year: d.year, population: +d[name]};
+        
       })
     };
   });
