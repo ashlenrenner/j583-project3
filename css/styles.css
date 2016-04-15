@@ -33,3 +33,11 @@ body {
   margin-left: 65px;
   font-size: 300%;
 }
+.tooltip {
+    position: absolute;
+    background: black;
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 3px;
+}

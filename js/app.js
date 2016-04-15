@@ -8,7 +8,7 @@ document.getElementById('back').style.display = "none";
  //shows the back button
  function showBack()
  {
- document.getElementById('back').style.display = "block";
+ document.getElementById('back').style.display = "";
  }
 
  //hides the update button
@@ -34,6 +34,11 @@ var y = d3.scale.linear()
     .range([height, 0]);
 
 var color = d3.scale.category20();
+// color array
+var bluescale4 = ["#8BA9D0", "#6A90C1", "#066CA9", "#004B8C"];
+
+//color function pulls from array of colors stored in color.js
+var color = d3.scale.ordinal().range(bluescale4);
 
 // Defines the axes
 var xAxis = d3.svg.axis().scale(x)
@@ -52,6 +57,8 @@ var svg = d3.select("body").append("svg")
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
 
 //getting the data
 d3.tsv("data.tsv", function(error, data) {
@@ -100,7 +107,23 @@ d3.tsv("data.tsv", function(error, data) {
   var borough = svg.selectAll(".borough")
       .data(boroughs)
     .enter().append("g")
-      .attr("class", "borough");
+      .attr("class", "borough")
+//tooltip
+      .on('mouseover', function(d) {
+                d3.select('.tooltip')
+                    .html(d.year + "<br />" + Math.round(d.population) )
+                    .style('opacity', 1);
+                  })
+      .on('mouseout', function(d) {
+              d3.select('.tooltip')
+                  .style('opacity', 0);
+          })
+      .on('mousemove', function(d) {
+              console.log(d3.event);
+              d3.select('.tooltip')
+                  .style('left', (d3.event.clientX + 20) + 'px')
+                  .style('top', (d3.event.clientY) + 'px');
+          });
 
 
   borough.append("path")
@@ -116,6 +139,7 @@ d3.tsv("data.tsv", function(error, data) {
       .text(function(d) { return d.name; });
 });
 hideBack();
+
 
 }
   callChart();
